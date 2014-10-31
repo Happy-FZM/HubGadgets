@@ -1,0 +1,6 @@
+name: Gadgets
+author: Jaaakee224
+version: 1.0
+main: me.Jaaakee224.HubGadgets.HubGadgetsPlugin
+commands:
+  gadget:
