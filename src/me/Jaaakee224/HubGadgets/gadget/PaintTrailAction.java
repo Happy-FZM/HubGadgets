@@ -79,7 +79,7 @@ public class PaintTrailAction implements Gadget.GadgetAction {
 						}
 					}
 				}
-			}.runTaskLater(HubGadgetsPlugin.i, 10L);
+			}.runTaskLater(HubGadgetsPlugin.i, 60L);
 		}
 		return false;
 	}

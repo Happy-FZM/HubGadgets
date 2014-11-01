@@ -28,7 +28,7 @@ public class Translation
         config.addDefault("cooldown", "&cYou must wait &4[second] &csecond[plural] before using this!");
         config.addDefault("cooldown_string", "&7COOLDOWN: &b[second] SECOND[plural|upper]");
         config.addDefault("no_permission", "&cYou do not have permission to using this!");
-        config.addDefault("target_clean_area", "&cNo location in range.");
+        config.addDefault("target_clean_area", "&cInvalid Location.");
         config.addDefault("unknown_gadget", "&cUnknown gadget! All gadgets: &4[gadgets]&c.");
         config.addDefault("inventory.title", "Gadgets");
         config.addDefault("inventory.prev", "&a< Page [page]");

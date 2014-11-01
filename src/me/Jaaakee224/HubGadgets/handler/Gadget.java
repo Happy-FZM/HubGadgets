@@ -477,8 +477,7 @@ public enum Gadget implements Listener
         }
     }
     
-    public enum TriggerAction
-    {
+    public enum TriggerAction {
         INTERACT(), 
         INTERACT_BLOCK(), 
         INTERACT_ENTITY(), 
@@ -497,8 +496,7 @@ public enum Gadget implements Listener
         VEHICLE_EXIT();
     }
     
-    public interface GadgetAction
-    {
+    public interface GadgetAction {
         boolean onEvent(Event p0, TriggerAction p1, Gadget p2);
         
         boolean onRun(Player p0, long p1, Gadget p2);
