@@ -13,8 +13,7 @@ import java.util.Map;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-public enum ParticleEffect
-{
+public enum ParticleEffect {
     HUGE_EXPLOSION("HUGE_EXPLOSION", 0, "hugeexplosion"), 
     LARGE_EXPLODE("LARGE_EXPLODE", 1, "largeexplode"), 
     FIREWORKS_SPARK("FIREWORKS_SPARK", 2, "fireworksSpark"), 
@@ -59,7 +58,6 @@ public enum ParticleEffect
     TILE_CRACK("TILE_CRACK", 41, "tilecrack_{subtype}");
     
     private static final Map<String, ParticleEffect> NAME_MAP;
-    private static final double MAX_RANGE = 50.0;
     private static Constructor<?> packetPlayOutWorldParticles;
     private static boolean legacy;
     private static Method getHandle;

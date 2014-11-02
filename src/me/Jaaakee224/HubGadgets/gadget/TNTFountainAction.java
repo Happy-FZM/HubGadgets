@@ -19,8 +19,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-public class TNTFountainAction implements Gadget.GadgetAction
-{
+public class TNTFountainAction implements Gadget.GadgetAction {
 	private final Map<Player, Location> locations;
 
 	public TNTFountainAction() {
@@ -33,8 +32,10 @@ public class TNTFountainAction implements Gadget.GadgetAction
 		if (trigger != Gadget.TriggerAction.INTERACT) {
 			return false;
 		}
+		
 		final PlayerInteractEvent interactEvent = (PlayerInteractEvent)event;
 		final Player player = interactEvent.getPlayer();
+		@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
 		final Block block = player.getTargetBlock((HashSet)null, 4);
 		this.locations.put(player, block.getLocation().add(0.0, 1.5, 0.0));
 		return true;
@@ -50,6 +51,7 @@ public class TNTFountainAction implements Gadget.GadgetAction
 				return true;
 			}
 			final World world = location.getWorld();
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			final TNTPrimed tnt = (TNTPrimed)world.spawn(location, (Class)TNTPrimed.class);
 			tnt.setVelocity(new Vector(x, 1.8f, z));
 			tnt.setYield(0.0f);

@@ -48,8 +48,8 @@ public class HubGadgetsPlugin extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		i = this;
-		Options.load(new File(this.getDataFolder(), "options.yml"));
-		Gadgets.load(new File(this.getDataFolder(), "gadgets.yml"));
+		Options.load(new File(getDataFolder(), "options.yml"));
+		Gadgets.load(new File(getDataFolder(), "gadgets.yml"));
 		this.menu = new Menu(StringUtils.join(Translation.getTranslation("inventory.title"), ", "), this.getMenuItems(), new GadgetsMenuAction());
 		Bukkit.getPluginManager().registerEvents(new InventoryClick(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerDropItem(), this);
@@ -67,6 +67,7 @@ public class HubGadgetsPlugin extends JavaPlugin {
 		Gadget.cooldowns = null;
 	}
 
+	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
 	@Override
 	public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
 		if (!command.getName().equals("gadget")) {
@@ -86,8 +87,7 @@ public class HubGadgetsPlugin extends JavaPlugin {
 				gadget.finish(player);
 			}
 			player.getInventory().setItem(Options.getGadgets().getSlot(), (ItemStack)null);
-		}
-		else {
+		} else {
 			final String name = args[0].toUpperCase();
 			if (name.equalsIgnoreCase("use") && args.length == 2) {
 				final Gadget gadget2 = getGadget(args[1]);

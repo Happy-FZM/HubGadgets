@@ -22,8 +22,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class TetherballAction implements Gadget.GadgetAction
-{
+public class TetherballAction implements Gadget.GadgetAction {
     private final Map<Player, List<Entity>> entities;
     private final Map<Player, List<Block>> blocks;
     
@@ -33,7 +32,8 @@ public class TetherballAction implements Gadget.GadgetAction
         this.blocks = new HashMap<Player, List<Block>>();
     }
     
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean onEvent(final Event event, final Gadget.TriggerAction trigger, final Gadget gadget) {
         if (trigger != Gadget.TriggerAction.HANGING_BREAK && trigger != Gadget.TriggerAction.BLOCK_BREAK && trigger != Gadget.TriggerAction.INTERACT_BLOCK) {
             return false;
@@ -77,8 +77,10 @@ public class TetherballAction implements Gadget.GadgetAction
                 this.addBlock(location.getBlock(), blocks2).setType(Material.FENCE);
                 location = location.add(0.0, 1.0, 0.0);
             }
-            final LeashHitch leash = (LeashHitch)world.spawn(location.subtract(0.0, 1.0, 0.0), (Class)LeashHitch.class);
-            final Chicken chicken = (Chicken)world.spawn(location.add(1.0, -5.0, 0.0), (Class)Chicken.class);
+            @SuppressWarnings({ "rawtypes", "unchecked" })
+			final LeashHitch leash = (LeashHitch)world.spawn(location.subtract(0.0, 1.0, 0.0), (Class)LeashHitch.class);
+            @SuppressWarnings({ "rawtypes", "unchecked" })
+			final Chicken chicken = (Chicken)world.spawn(location.add(1.0, -5.0, 0.0), (Class)Chicken.class);
             chicken.setMaxHealth(2048);
             chicken.setHealth(2048);
             chicken.setLeashHolder(leash);

@@ -44,7 +44,8 @@ public class RainbowAction implements Gadget.GadgetAction
     private List<Entity> createRainbow(final Location location, final DirectionUtils.Direction direction) {
         final Location copy = location.clone();
         final List<Entity> entities = new ArrayList<Entity>();
-        final byte[] colors = { DyeColor.PINK.getWoolData(), DyeColor.PURPLE.getWoolData(), DyeColor.LIGHT_BLUE.getWoolData(), DyeColor.LIME.getWoolData(), DyeColor.YELLOW.getWoolData(), DyeColor.ORANGE.getWoolData(), DyeColor.RED.getWoolData() };
+        @SuppressWarnings("deprecation")
+		final byte[] colors = { DyeColor.PINK.getWoolData(), DyeColor.PURPLE.getWoolData(), DyeColor.LIGHT_BLUE.getWoolData(), DyeColor.LIME.getWoolData(), DyeColor.YELLOW.getWoolData(), DyeColor.ORANGE.getWoolData(), DyeColor.RED.getWoolData() };
         byte[] array;
         for (int length = (array = colors).length, i = 0; i < length; ++i) {
             final byte color = array[i];
@@ -76,7 +77,8 @@ public class RainbowAction implements Gadget.GadgetAction
             location.add(0.0, (add ? 1 : -1) * 0.9, 0.0);
             for (int j = 0; j < items; ++j) {
                 location = location.add(((direction == DirectionUtils.Direction.EAST) ? 1 : -1) * -0.37, 0.0, ((direction == DirectionUtils.Direction.NORTH) ? 1 : -1) * -0.37);
-                final WitherSkull skull = (WitherSkull)world.spawn(location, (Class)WitherSkull.class);
+                @SuppressWarnings({ "unchecked", "rawtypes" })
+				final WitherSkull skull = (WitherSkull)world.spawn(location, (Class)WitherSkull.class);
                 skull.setDirection(new Vector(0, 0, 0));
                 skull.setVelocity(new Vector(0, 0, 0));
                 final Item item = world.dropItem(location, ItemBuilder.getRandomResource(material, durability));

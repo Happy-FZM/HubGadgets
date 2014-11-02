@@ -8,8 +8,7 @@ import java.util.Map;
 
 import org.bukkit.Bukkit;
 
-public final class ReflectionHandler
-{
+public final class ReflectionHandler {
     public static Class<?> getClass(final String name, final PackageType type) throws Exception {
         return Class.forName(type + "." + name);
     }
@@ -19,7 +18,8 @@ public final class ReflectionHandler
     }
     
     public static Constructor<?> getConstructor(final Class<?> clazz, final Class<?>... parameterTypes) {
-        final Class[] p = DataType.convertToPrimitive(parameterTypes);
+        @SuppressWarnings("rawtypes")
+		final Class[] p = DataType.convertToPrimitive(parameterTypes);
         Constructor<?>[] constructors;
         for (int length = (constructors = clazz.getConstructors()).length, i = 0; i < length; ++i) {
             final Constructor<?> c = constructors[i];
@@ -51,7 +51,8 @@ public final class ReflectionHandler
     }
     
     public static Method getMethod(final Class<?> clazz, final String name, final Class<?>... parameterTypes) {
-        final Class[] p = DataType.convertToPrimitive(parameterTypes);
+        @SuppressWarnings("rawtypes")
+		final Class[] p = DataType.convertToPrimitive(parameterTypes);
         Method[] methods;
         for (int length = (methods = clazz.getMethods()).length, i = 0; i < length; ++i) {
             final Method m = methods[i];
@@ -308,7 +309,8 @@ public final class ReflectionHandler
         
         public static Class<?>[] convertToPrimitive(final Class<?>[] classes) {
             final int length = (classes == null) ? 0 : classes.length;
-            final Class[] types = new Class[length];
+            @SuppressWarnings("rawtypes")
+			final Class[] types = new Class[length];
             for (int i = 0; i < length; ++i) {
                 types[i] = getPrimitive(classes[i]);
             }
@@ -317,7 +319,8 @@ public final class ReflectionHandler
         
         public static Class<?>[] convertToPrimitive(final Object[] objects) {
             final int length = (objects == null) ? 0 : objects.length;
-            final Class[] types = new Class[length];
+            @SuppressWarnings("rawtypes")
+			final Class[] types = new Class[length];
             for (int i = 0; i < length; ++i) {
                 types[i] = getPrimitive(objects[i].getClass());
             }

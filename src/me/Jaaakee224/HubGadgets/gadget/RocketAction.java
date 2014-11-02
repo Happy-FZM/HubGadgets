@@ -20,8 +20,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.util.Vector;
 
-public class RocketAction implements Gadget.GadgetAction
-{
+public class RocketAction implements Gadget.GadgetAction {
     private final Map<Player, List<Entity>> entities;
     private final Map<Player, FallingBlock> rockets;
     
@@ -86,8 +85,8 @@ public class RocketAction implements Gadget.GadgetAction
                 return true;
             }
             final Location location = rocket.getLocation().subtract(0.0, 2.0, 0.0);
-            ParticleEffect.LAVA.display(location, 0.2f, 0.0f, 0.2f, 1.0f, 10);
-            ParticleEffect.SMOKE.display(location, 0.2f, 0.0f, 0.2f, 1.0f, 10);
+            ParticleEffect.LAVA.display(location, 0.2f, 0.0f, 0.2f, 1.0f, 30);
+            ParticleEffect.SMOKE.display(location, 0.2f, 0.0f, 0.2f, 1.0f, 30);
             for (final Entity entity : entities) {
                 if (entity.isDead()) {
                     return true;

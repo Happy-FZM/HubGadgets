@@ -19,9 +19,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-public class ParachuteAction implements Gadget.GadgetAction
-{
-	private static final int CHICKENS = 10;
+public class ParachuteAction implements Gadget.GadgetAction {
 	private final Map<Player, List<Chicken>> entities;
 	private final Map<Player, Chicken> parachutes;
 
@@ -44,6 +42,7 @@ public class ParachuteAction implements Gadget.GadgetAction
 		if (ticks == start) {
 			final World world = player.getWorld();
 			Location location = player.getLocation();
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			final Chicken bottom = (Chicken)world.spawn(location, (Class)Chicken.class);
 			bottom.setVelocity(new Vector(0, 0, 0));
 			bottom.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
@@ -53,6 +52,7 @@ public class ParachuteAction implements Gadget.GadgetAction
 			location = location.add(0.0, 8.0, 0.0);
 			final List<Chicken> entities = new ArrayList<Chicken>();
 			for (int i = 0; i < 10; ++i) {
+				@SuppressWarnings({ "unchecked", "rawtypes" })
 				final Chicken chicken = (Chicken)world.spawn(location.clone().add(MathUtils.random.nextDouble() * 0.2, 0.0, MathUtils.random.nextDouble() * 0.2), (Class)Chicken.class);
 				chicken.setVelocity(new Vector(0, 0, 0));
 				chicken.setLeashHolder(player);

@@ -10,8 +10,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class FireworkEffectPlayer
-{
+public class FireworkEffectPlayer {
     private static Method world_getHandle;
     private static Method nms_world_broadcastEntityEffect;
     private static Method firework_getHandle;
@@ -22,17 +21,20 @@ public class FireworkEffectPlayer
         FireworkEffectPlayer.firework_getHandle = null;
     }
     
-    public static void playFirework(final Plugin plugin, final World world, final Location loc) throws Exception {
-        final Firework fw = (Firework)world.spawn(loc, (Class)Firework.class);
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public static void playFirework(final Plugin plugin, final World world, final Location loc) throws Exception {
+    	final Firework fw = (Firework)world.spawn(loc, (Class)Firework.class);
         if (FireworkEffectPlayer.world_getHandle == null) {
             FireworkEffectPlayer.world_getHandle = getMethod(world.getClass(), "getHandle");
             FireworkEffectPlayer.firework_getHandle = getMethod(fw.getClass(), "getHandle");
         }
+        
         final Object nms_world = FireworkEffectPlayer.world_getHandle.invoke(world, new Object[0]);
         final Object nms_firework = FireworkEffectPlayer.firework_getHandle.invoke(fw, new Object[0]);
         if (FireworkEffectPlayer.nms_world_broadcastEntityEffect == null) {
             FireworkEffectPlayer.nms_world_broadcastEntityEffect = getMethod(nms_world.getClass(), "broadcastEntityEffect");
         }
+        
         final FireworkMeta data = fw.getFireworkMeta();
         data.clearEffects();
         data.setPower(1);

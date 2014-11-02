@@ -95,8 +95,7 @@ public class Menu implements Listener {
         }
     }
     
-    public static class MenuPage
-    {
+    public static class MenuPage {
         private final int id;
         private final String title;
         private final Map<Integer, ItemStack> buttons;
@@ -164,9 +163,10 @@ public class Menu implements Listener {
             }
             final Object this$title = this.getTitle();
             final Object other$title = other.getTitle();
+            
             Label_0078: {
-                if (this$title == null) {
-                    if (other$title == null) {
+                if (this.title == null) {
+                    if (other.title == null) {
                         break Label_0078;
                     }
                 }
@@ -175,6 +175,7 @@ public class Menu implements Listener {
                 }
                 return false;
             }
+            
             final Object this$buttons = this.getButtons();
             final Object other$buttons = other.getButtons();
             if (this$buttons == null) {
@@ -194,7 +195,8 @@ public class Menu implements Listener {
         
         @Override
         public int hashCode() {
-            final int PRIME = 59;
+            @SuppressWarnings("unused")
+			final int PRIME = 59;
             int result = 1;
             result = result * 59 + this.getId();
             final Object $title = this.getTitle();

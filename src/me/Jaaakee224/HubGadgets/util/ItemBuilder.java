@@ -12,8 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-public class ItemBuilder
-{
+public class ItemBuilder {
     private String title;
     private final int amount;
     private final short damage;
@@ -89,20 +88,25 @@ public class ItemBuilder
         if (this.material == null) {
             throw new NullPointerException("Material cannot be null!");
         }
+        
         final ItemStack item = new ItemStack(this.material, this.amount, this.damage);
         if (!this.enchantments.isEmpty()) {
             item.addUnsafeEnchantments(this.enchantments);
         }
+        
         final ItemMeta meta = item.getItemMeta();
         if (this.title != null) {
             meta.setDisplayName(this.title);
         }
+        
         if (this.leatherColor != null && item.getType().name().contains("LEATHER_")) {
             ((LeatherArmorMeta)meta).setColor(this.leatherColor);
         }
+        
         if (!this.lores.isEmpty()) {
             meta.setLore(this.lores);
         }
+        
         item.setItemMeta(meta);
         return item;
     }

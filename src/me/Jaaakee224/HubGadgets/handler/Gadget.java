@@ -9,15 +9,12 @@ import me.Jaaakee224.HubGadgets.HubGadgetsPlugin;
 import me.Jaaakee224.HubGadgets.config.Options;
 import me.Jaaakee224.HubGadgets.config.Translation;
 import me.Jaaakee224.HubGadgets.gadget.BatBlasterAction;
-import me.Jaaakee224.HubGadgets.gadget.CatapultAction;
 import me.Jaaakee224.HubGadgets.gadget.CowboyAction;
 import me.Jaaakee224.HubGadgets.gadget.CryotubeAction;
 import me.Jaaakee224.HubGadgets.gadget.DiscoBallAction;
 import me.Jaaakee224.HubGadgets.gadget.DiscoPantsAction;
 import me.Jaaakee224.HubGadgets.gadget.FlyingCarpetAction;
-import me.Jaaakee224.HubGadgets.gadget.FunCannonAction;
 import me.Jaaakee224.HubGadgets.gadget.GhostsAction;
-import me.Jaaakee224.HubGadgets.gadget.KawarimiAction;
 import me.Jaaakee224.HubGadgets.gadget.PaintGunAction;
 import me.Jaaakee224.HubGadgets.gadget.PaintTrailAction;
 import me.Jaaakee224.HubGadgets.gadget.ParachuteAction;
@@ -40,7 +37,6 @@ import me.Jaaakee224.HubGadgets.util.LocationUtils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -83,23 +79,20 @@ public enum Gadget implements Listener {
 	TELEPORTSTICK(ChatColor.GREEN + "Teleport Stick", ChatColor.GRAY + "Use the magic stick\n" + ChatColor.GRAY + "to teleport yourself\n" + ChatColor.GRAY + "everywhere in the lobby.", new ItemStack(Material.STICK), 3, 0, new TeleportStickAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	RAINBOW(ChatColor.GREEN + "Rainbow", ChatColor.GRAY + "You can now show a\n" + ChatColor.GRAY + "rainbow with the most\n" + ChatColor.GRAY + "beautiful color!", new ItemStack(Material.COOKED_FISH, 1, (short)2), 120, 10, new RainbowAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	WHENPIGSFLY(ChatColor.GREEN + "When Pigs Fly", ChatColor.GRAY + "Ride a pig to achieve your\n" + ChatColor.GRAY + "most epic battles!", new ItemStack(Material.SADDLE), 30, 30, new PigsFlyAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.ENTITY_DAMAGE, TriggerAction.VEHICLE_EXIT)), 
-	CATAPULT(ChatColor.GREEN + "CATapult", ChatColor.GRAY + "Attack your ennemies with\n" + ChatColor.GRAY + "their worst fears, the CATS!\n" + ChatColor.GRAY + "Launches 4-6 exploding cats\n" + ChatColor.GRAY + "in the direction you are\n" + ChatColor.GRAY + "aiming for.", new ItemStack(Material.MONSTER_EGG, 1, (short)98), 60, 1, new CatapultAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	RAILGUN(ChatColor.GREEN + "Railgun", ChatColor.GRAY + "Directly coming from QuakeCraft,\n" + ChatColor.GRAY + "this RailGun is ready for\n" + ChatColor.GRAY + "unlimited fire!", new ItemStack(Material.WOOD_HOE), 10, 0, new RailgunAction(), Arrays.asList(TriggerAction.INTERACT)),
 	DISCOBALL(ChatColor.GREEN + "Disco Ball", ChatColor.GRAY + "Dance to the\n" + ChatColor.GRAY + "beat with a color-changing\n" + ChatColor.GRAY + "disco ball and music!", new ItemStack(Material.STAINED_GLASS, 1, (short) 11), 60, 20, new DiscoBallAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.BLOCK_BREAK)),
-	CRYOTUBE(ChatColor.GREEN + "Cryotube", ChatColor.GRAY + "Protect yourself in a\n" + ChatColor.GRAY + "iceberg, useful to survive\n" + ChatColor.GRAY + "from apocalyspe.", new ItemStack(Material.SNOW_BALL), 45, 10, new CryotubeAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.BLOCK_BREAK)), 
-	KAWARIMI(ChatColor.GREEN + "Kawarimi no Jutsu", ChatColor.GRAY + "With this ancestral technique,\n" + ChatColor.GRAY + "you can replace your body\n" + ChatColor.GRAY + ChatColor.GRAY + "by a wood block.", new ItemStack(Material.LOG), 45, 10, new KawarimiAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.BLOCK_BREAK)), 
+	CRYOTUBE(ChatColor.GREEN + "Cryotube", ChatColor.GRAY + "Protect yourself in a\n" + ChatColor.GRAY + "iceberg, useful to survive\n" + ChatColor.GRAY + "from apocalyspe.", new ItemStack(Material.SNOW_BALL), 45, 10, new CryotubeAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.BLOCK_BREAK)),
 	DISCOPANTS(ChatColor.GREEN + "Disco Pants", ChatColor.GRAY + "What is better than random\n" + ChatColor.GRAY + "colored pants?", new ItemStack(Material.LEATHER_LEGGINGS), 60, 30, new DiscoPantsAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.INVENTORY_CLICK, TriggerAction.INVENTORY_DROP)), 
 	PAINTTRAIL(ChatColor.GREEN + "Paint Trail", ChatColor.GRAY + "Leaves a trail of randomly\n" + ChatColor.GRAY + "colored clay above your\n" + ChatColor.GRAY + "head that disappears\n" + ChatColor.GRAY + "a few seconds later.", new ItemStack(Material.INK_SACK, 1, (short)11), 60, 10, new PaintTrailAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	POOPBOMB(ChatColor.GREEN + "Poop Bomb", ChatColor.GRAY + "If the name doesn't say\n" + ChatColor.GRAY + "enough, this is pretty much\n" + ChatColor.GRAY + "just a bomb that explodes\n" + ChatColor.GRAY + "releasing poop everywhere.", new ItemStack(Material.INK_SACK, 1, (short)3), 60, 10, new PoopBombAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	PAINTGUN(ChatColor.GREEN + "Paint Gun", ChatColor.GRAY + "Paint the lobby to your\n" + ChatColor.GRAY + "taste with that gun of paint.", new ItemStack(Material.GOLD_BARDING), 10, -1, new PaintGunAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.TELEPORT_ENDERPEARL, TriggerAction.PROJECTILE_HIT, TriggerAction.ENTITY_DAMAGE_BY_ENTITY, TriggerAction.HANGING_BREAK_BY_ENTITY)), 
 	BATBLASTER(ChatColor.GREEN + "Bat Blaster", ChatColor.GRAY + "Launch a wave of bat\n" + ChatColor.GRAY + "on people you don't like!", new ItemStack(Material.IRON_BARDING), 30, 2, new BatBlasterAction(), Arrays.asList(TriggerAction.INTERACT)), 
-	SELFDESTRUCT(ChatColor.GREEN + "Self Destruct", ChatColor.GRAY + "Have you ever wanted to\n" + ChatColor.GRAY + "make you explode and stay\n" + ChatColor.GRAY + "alive to see what happens?", new ItemStack(Material.FIREWORK_CHARGE), 60, 10, new SelfDestructAction(), Arrays.asList(TriggerAction.INTERACT)), 
+	SELFDESTRUCT(ChatColor.GREEN + "Self Destruct", ChatColor.GRAY + "Have you ever wanted to\n" + ChatColor.GRAY + "make you explode and stay\n" + ChatColor.GRAY + "alive to see what happens?", new ItemStack(Material.FIREBALL), 60, 10, new SelfDestructAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	SLIMEVASION(ChatColor.GREEN + "Slimevasion", ChatColor.GRAY + "Summon slimes that will\n" + ChatColor.GRAY + "shatter when falling.", new ItemStack(Material.SLIME_BALL), 60, 15, new SlimevasionAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.ENTITY_DAMAGE)), 
 	TRAMPOLINE(ChatColor.GREEN + "Trampoline", ChatColor.GRAY + "Constructs a trampoline\n" + ChatColor.GRAY + "that sends you into the air.", new ItemStack(Material.HOPPER), 90, 30, new TrampolineAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.BLOCK_BREAK)), 
-	FUNCANNON(ChatColor.GREEN + "Fun Cannon", ChatColor.GRAY + "Shoot fun things!", new ItemStack(Material.BLAZE_ROD), 10, -1, new FunCannonAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.TELEPORT_ENDERPEARL, TriggerAction.PROJECTILE_HIT, TriggerAction.ENTITY_DAMAGE_BY_ENTITY, TriggerAction.HANGING_BREAK_BY_ENTITY)), 
-	SUICIDALSHEEP(ChatColor.GREEN + "Suicidal Sheep", ChatColor.GRAY + "A flying sheep that explodes\n" + ChatColor.GRAY + "after a few seconds. What\n" + ChatColor.GRAY + "could be more normal?", new ItemStack(Material.WOOL, 1, DyeColor.RED.getWoolData()), 60, 13, new SuicidalSheepAction(), Arrays.asList(TriggerAction.INTERACT)), 
+	SUICIDALSHEEP(ChatColor.GREEN + "Suicidal Sheep", ChatColor.GRAY + "A flying sheep that explodes\n" + ChatColor.GRAY + "after a few seconds. What\n" + ChatColor.GRAY + "could be more normal?", new ItemStack(Material.WOOL, 1, (byte)14), 60, 13, new SuicidalSheepAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	GHOSTS(ChatColor.GREEN + "Ghosts", ChatColor.GRAY + "Scare your friends with\n" + ChatColor.GRAY + "these ghosts!", new ItemStack(Material.SKULL_ITEM), 60, 20, new GhostsAction(), Arrays.asList(TriggerAction.INTERACT)), 
-	FLYINGCARPET(ChatColor.GREEN + "Flying Carpet", ChatColor.GRAY + "Become a wizard with\n" + ChatColor.GRAY + "this flying carpet!", new ItemStack(Material.CARPET, 1, DyeColor.CYAN.getWoolData()), 90, 45, new FlyingCarpetAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.ENTITY_CHANGE_BLOCK)),
+	FLYINGCARPET(ChatColor.GREEN + "Flying Carpet", ChatColor.GRAY + "Become a wizard with\n" + ChatColor.GRAY + "this flying carpet!", new ItemStack(Material.CARPET, 1, (byte)9), 90, 45, new FlyingCarpetAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.ENTITY_CHANGE_BLOCK)),
 	SWEETSBOMB(ChatColor.GREEN + "Sweets Bomb", ChatColor.GRAY + "Create an explosion that\n" + ChatColor.GRAY + "releases dozens of cake\n" + ChatColor.GRAY + "and cookies.", new ItemStack(Material.CAKE), 60, 10, new SweetsBombAction(), Arrays.asList(TriggerAction.INTERACT)),
 	PARTYPOPPER(ChatColor.GREEN + "Party Popper", ChatColor.GRAY + "The party has just\n" + ChatColor.GRAY + "begun!", new ItemStack(Material.ENDER_CHEST), 60, 20, new PartyPopperAction(), Arrays.asList(TriggerAction.INTERACT));
 
@@ -124,6 +117,7 @@ public enum Gadget implements Listener {
 		if (corner1.getWorld() != corner2.getWorld()) {
 			return false;
 		}
+		
 		final World world = corner1.getWorld();
 		for (int x = corner1.getBlockX(); x <= corner2.getBlockX(); ++x) {
 			for (int y = corner1.getBlockY(); y <= corner2.getBlockY(); ++y) {
@@ -432,6 +426,7 @@ public enum Gadget implements Listener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onProjectileHit(final ProjectileHitEvent event) {
 		if (this.triggers.contains(TriggerAction.PROJECTILE_HIT) && event.getEntity() instanceof Projectile) {
@@ -442,6 +437,7 @@ public enum Gadget implements Listener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteract(final PlayerInteractEvent event) {
 		if ((this.triggers.contains(TriggerAction.INTERACT) || this.triggers.contains(TriggerAction.INTERACT_BLOCK)) && event.getAction().name().startsWith("RIGHT_CLICK") && event.hasItem() && event.getItem().hasItemMeta() && event.getItem().getItemMeta().getDisplayName().equals(this.name)) {

@@ -127,7 +127,6 @@ public class Options {
         
         @Override
         public int hashCode() {
-            final int PRIME = 59;
             int result = 1;
             result = result * 59 + this.getSlot();
             result = result * 59 + (this.isEnable() ? 79 : 97);

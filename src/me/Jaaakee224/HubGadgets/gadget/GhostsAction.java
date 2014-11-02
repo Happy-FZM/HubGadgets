@@ -35,13 +35,16 @@ public class GhostsAction implements Gadget.GadgetAction {
     public boolean onEvent(final Event event, final Gadget.TriggerAction trigger, final Gadget gadget) {
         if (trigger == Gadget.TriggerAction.INTERACT) {
             final Player player = ((PlayerEvent)event).getPlayer();
-            final Location location = player.getTargetBlock((HashSet)null, 4).getLocation().add(0.0, 4.0, 0.0);
+            @SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+			final Location location = player.getTargetBlock((HashSet)null, 4).getLocation().add(0.0, 4.0, 0.0);
             final List<Entity> entities = new ArrayList<Entity>();
             for (int i = 0; i < MathUtils.random(4, 6); ++i) {
-                final Bat bat = (Bat)player.getWorld().spawn(location, (Class)Bat.class);
+                @SuppressWarnings({ "unchecked", "rawtypes" })
+				final Bat bat = (Bat)player.getWorld().spawn(location, (Class)Bat.class);
                 bat.setNoDamageTicks(Integer.MAX_VALUE);
                 bat.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
-                final Zombie zombie = (Zombie)player.getWorld().spawn(location.clone().add(MathUtils.random(0, 1), 0.0, MathUtils.random(0, 2)), (Class)Zombie.class);
+                @SuppressWarnings({ "unchecked", "rawtypes" })
+				final Zombie zombie = (Zombie)player.getWorld().spawn(location.clone().add(MathUtils.random(0, 1), 0.0, MathUtils.random(0, 2)), (Class)Zombie.class);
                 zombie.setBaby(true);
                 zombie.getEquipment().setArmorContents((ItemStack[])null);
                 zombie.setNoDamageTicks(Integer.MAX_VALUE);

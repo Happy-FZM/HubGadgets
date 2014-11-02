@@ -5,8 +5,8 @@ import java.util.HashSet;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
-public class LocationUtils
-{
+public class LocationUtils {
+	
     public static Entity[] getNearbyEntities(final Location location, final int radius) {
         final int chunkRadius = (radius < 16) ? 1 : ((radius - radius % 16) / 16);
         final HashSet<Entity> radiusEntities = new HashSet<Entity>();

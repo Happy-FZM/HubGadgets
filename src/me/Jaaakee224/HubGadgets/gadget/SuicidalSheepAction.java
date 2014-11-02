@@ -38,16 +38,19 @@ public class SuicidalSheepAction implements Gadget.GadgetAction
         SuicidalSheepAction.playerEntities = new HashMap<Player, List<Entity>>();
     }
     
-    @Override
+    @SuppressWarnings("serial")
+	@Override
     public boolean onEvent(final Event event, final Gadget.TriggerAction trigger, final Gadget gadget) {
         if (trigger == Gadget.TriggerAction.INTERACT) {
             final Player player = ((PlayerEvent)event).getPlayer();
             Location location = player.getLocation();
             location = location.toVector().add(location.getDirection().multiply(2.0)).toLocation(player.getWorld());
-            final Bat bat = (Bat)player.getWorld().spawn(location, (Class)Bat.class);
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+			final Bat bat = (Bat)player.getWorld().spawn(location, (Class)Bat.class);
             bat.setNoDamageTicks(Integer.MAX_VALUE);
             bat.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
-            final Sheep sheep = (Sheep)player.getWorld().spawn(location, (Class)Sheep.class);
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+			final Sheep sheep = (Sheep)player.getWorld().spawn(location, (Class)Sheep.class);
             sheep.setNoDamageTicks(Integer.MAX_VALUE);
             sheep.setColor(DyeColor.RED);
             bat.setPassenger(sheep);
@@ -65,7 +68,8 @@ public class SuicidalSheepAction implements Gadget.GadgetAction
         return false;
     }
     
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean onRun(final Player player, final long ticks, final Gadget gadget) {
         if (ticks == 60L || (ticks <= 120L && ticks > 60L && ticks % 3L == 0L)) {
             final Sheep sheep = SuicidalSheepAction.playerSheep.get(player);

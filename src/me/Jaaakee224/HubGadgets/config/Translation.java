@@ -13,8 +13,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-public class Translation
-{
+public class Translation {
     private static Map<String, String> messages;
     
     static {
@@ -43,9 +42,7 @@ public class Translation
             config.addDefault(String.valueOf(path) + "name", gadget.getName().replace("§", "&"));
             config.addDefault(String.valueOf(path) + "description", gadget.getDescription().replace("§", "&"));
         }
-        if (!file.exists()) {
-            HubGadgetsPlugin.i.getLogger().info(String.valueOf(file.getName()) + " | The language file does not exist, it has been generated.");
-        }
+        
         try {
             config.save(file);
         }

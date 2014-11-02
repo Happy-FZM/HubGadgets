@@ -17,8 +17,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class DiscoPantsAction implements Gadget.GadgetAction
-{
+public class DiscoPantsAction implements Gadget.GadgetAction {
     private static final String TITLE;
     private final Map<Player, ItemStack> leggings;
     

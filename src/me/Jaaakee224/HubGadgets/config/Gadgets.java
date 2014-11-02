@@ -13,9 +13,9 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-public class Gadgets
-{
-    public static void load(final File file) {
+public class Gadgets {
+    @SuppressWarnings("deprecation")
+	public static void load(final File file) {
         final FileConfiguration config = YamlConfiguration.loadConfiguration(file);
         config.options().copyDefaults(true);
         Gadget[] values;

@@ -2,37 +2,20 @@ package me.Jaaakee224.HubGadgets.util;
 
 import java.util.Random;
 
-public final class MathUtils
-{
+public final class MathUtils {
     public static final float nanoToSec = 1.0E-9f;
     public static final float FLOAT_ROUNDING_ERROR = 1.0E-6f;
     public static final float PI = 3.1415927f;
     public static final float PI2 = 6.2831855f;
     public static final float SQRT_3 = 1.73205f;
     public static final float E = 2.7182817f;
-    private static final int SIN_BITS = 14;
-    private static final int SIN_MASK = 16383;
-    private static final int SIN_COUNT = 16384;
-    private static final float radFull = 6.2831855f;
-    private static final float degFull = 360.0f;
-    private static final float radToIndex = 2607.5945f;
-    private static final float degToIndex = 45.511112f;
     public static final float radiansToDegrees = 57.295776f;
     public static final float radDeg = 57.295776f;
     public static final float degreesToRadians = 0.017453292f;
     public static final float degRad = 0.017453292f;
-    private static final int ATAN2_BITS = 7;
-    private static final int ATAN2_BITS2 = 14;
-    private static final int ATAN2_MASK = 16383;
-    private static final int ATAN2_COUNT = 16384;
     static final int ATAN2_DIM;
     private static final float INV_ATAN2_DIM_MINUS_1;
     public static Random random;
-    private static final int BIG_ENOUGH_INT = 16384;
-    private static final double BIG_ENOUGH_FLOOR = 16384.0;
-    private static final double CEIL = 0.9999999;
-    private static final double BIG_ENOUGH_CEIL = 16384.999999999996;
-    private static final double BIG_ENOUGH_ROUND = 16384.5;
     
     static {
         ATAN2_DIM = (int)Math.sqrt(16384.0);
@@ -80,10 +63,12 @@ public final class MathUtils
             }
             add = 0.0f;
         }
+        
         final float invDiv = 1.0f / (((x < y) ? y : x) * MathUtils.INV_ATAN2_DIM_MINUS_1);
         if (invDiv == Float.POSITIVE_INFINITY) {
             return ((float)Math.atan2(y, x) + add) * mul;
         }
+        
         final int xi = (int)(x * invDiv);
         final int yi = (int)(y * invDiv);
         return (Atan2.table[yi * MathUtils.ATAN2_DIM + xi] + add) * mul;
@@ -203,8 +188,7 @@ public final class MathUtils
         return Math.abs(a - b) <= tolerance;
     }
     
-    private static class Sin
-    {
+    private static class Sin {
         static final float[] table;
         
         static {
@@ -218,8 +202,7 @@ public final class MathUtils
         }
     }
     
-    private static class Atan2
-    {
+    private static class Atan2 {
         static final float[] table;
         
         static {

@@ -22,8 +22,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
-public class TrampolineAction implements Gadget.GadgetAction
-{
+public class TrampolineAction implements Gadget.GadgetAction {
     public static final char[] SCHEMA;
     public final Map<Player, List<Block>> playerBlocks;
     public final Map<Player, Location> playerTrampoline;
@@ -38,7 +37,8 @@ public class TrampolineAction implements Gadget.GadgetAction
         this.playerTrampoline = new HashMap<Player, Location>();
     }
     
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public boolean onEvent(final Event event, final Gadget.TriggerAction trigger, final Gadget gadget) {
         if (trigger != Gadget.TriggerAction.BLOCK_BREAK && trigger != Gadget.TriggerAction.INTERACT) {
             return false;
