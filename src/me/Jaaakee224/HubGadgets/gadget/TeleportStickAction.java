@@ -14,15 +14,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerEvent;
 
-public class TeleportStickAction implements Gadget.GadgetAction
-{
+public class TeleportStickAction implements Gadget.GadgetAction {
     @Override
     public boolean onEvent(final Event event, final Gadget.TriggerAction trigger, final Gadget gadget) {
         if (trigger != Gadget.TriggerAction.INTERACT) {
             return false;
         }
+        
         final Player player = ((PlayerEvent)event).getPlayer();
-        Block block = player.getTargetBlock((HashSet)null, 50);
+        @SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+		Block block = player.getTargetBlock((HashSet)null, 50);
         Location location = block.getLocation();
         if (block.getType() == Material.AIR) {
             player.sendMessage(Translation.getTranslation("target_clean_area"));
@@ -44,6 +45,7 @@ public class TeleportStickAction implements Gadget.GadgetAction
         if (!block.isEmpty()) {
             location = location.add(0.0, 1.0, 0.0);
         }
+        
         final Location playerLocation = player.getLocation();
         location.setYaw(playerLocation.getYaw());
         location.setPitch(playerLocation.getPitch());

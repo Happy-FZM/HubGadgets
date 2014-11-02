@@ -28,6 +28,7 @@ public class CowboyAction implements Gadget.GadgetAction
         final Entity vehicle = player.getVehicle();
         if (vehicle != null && vehicle.getPassenger() == player) {
             vehicle.eject();
+            
         }
     }
     

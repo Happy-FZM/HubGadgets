@@ -37,10 +37,10 @@ public class CatapultAction implements Gadget.GadgetAction
         for (int i = 0; i < MathUtils.random(4, 6); ++i) {
             final float x = -4.0f + (float)(Math.random() * 9.0);
             final float z = -4.0f + (float)(Math.random() * 9.0);
-            final Ocelot cat = (Ocelot)world.spawn(location, (Class)Ocelot.class);
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+			final Ocelot cat = (Ocelot)world.spawn(location, (Class)Ocelot.class);
             cat.setCatType(Ocelot.Type.values()[MathUtils.random.nextInt(Ocelot.Type.values().length)]);
-            cat.setTamed(true);
-            cat.setBaby();
+            cat.setTamed(false);
             cat.setVelocity(new Vector(x, 0.0f, z));
             entities.add(cat);
         }
@@ -54,13 +54,11 @@ public class CatapultAction implements Gadget.GadgetAction
         if (entities != null) {
             for (final Ocelot cat : entities) {
                 final Location location = cat.getLocation();
-                if (!cat.isDead()) {
                     cat.remove();
                     location.getWorld().createExplosion(location, 0.0f);
                 }
             }
         }
-    }
     
     @Override
     public boolean onRun(final Player player, final long ticks, final Gadget gadget) {

@@ -21,8 +21,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class Menu implements Listener
-{
+public class Menu implements Listener {
     private final String title;
     private final List<MenuPage> pages;
     private final ItemStack[] buttons;

@@ -56,7 +56,8 @@ public class FlyingCarpetAction implements Gadget.GadgetAction
         if (trigger == Gadget.TriggerAction.INTERACT) {
             final Player player = ((PlayerEvent)event).getPlayer();
             final World world = player.getWorld();
-            final Block block = player.getTargetBlock((HashSet)null, 4);
+            @SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+			final Block block = player.getTargetBlock((HashSet)null, 4);
             final Location location = block.getLocation().add(0.0, 10.0, 0.0);
             final List<FallingBlock> entities = new ArrayList<FallingBlock>();
             final byte data = (byte)MathUtils.random.nextInt(15);
@@ -67,7 +68,8 @@ public class FlyingCarpetAction implements Gadget.GadgetAction
                 else {
                     location.add(0.0, 0.0, 1.0);
                 }
-                final FallingBlock falling2 = world.spawnFallingBlock(location, Material.CARPET, data);
+                @SuppressWarnings("deprecation")
+				final FallingBlock falling2 = world.spawnFallingBlock(location, Material.CARPET, data);
                 falling2.setDropItem(false);
                 falling2.setVelocity(new Vector(0, 0, 0));
                 if (i == 1) {

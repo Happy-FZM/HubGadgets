@@ -36,7 +36,8 @@ public class BatBlasterAction implements Gadget.GadgetAction {
         final Location location = player.getLocation().add(0.0, 2.0, 0.0);
         final List<Bat> entities = new ArrayList<Bat>();
         for (int i = 0; i < 10; ++i) {
-            final Bat bat = (Bat)world.spawn(location, (Class)Bat.class);
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+			final Bat bat = (Bat)world.spawn(location, (Class)Bat.class);
             bat.setNoDamageTicks(Integer.MAX_VALUE);
             bat.setVelocity(location.getDirection());
             entities.add(bat);

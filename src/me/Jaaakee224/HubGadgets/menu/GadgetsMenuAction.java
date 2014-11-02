@@ -8,8 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class GadgetsMenuAction implements Menu.MenuAction
-{
+public class GadgetsMenuAction implements Menu.MenuAction {
     @Override
     public void onInventoryClick(final Player player, final ItemStack item, final int slot, final Menu menu, final Menu.MenuPage page) {
         if (item != null && item.getType() != Material.AIR) {

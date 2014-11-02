@@ -30,7 +30,8 @@ public class FunCannonAction implements Gadget.GadgetAction {
         this.entities = new HashMap<Player, List<Projectile>>();
     }
     
-    @Override
+    @SuppressWarnings({ "unchecked", "deprecation", "rawtypes" })
+	@Override
     public boolean onEvent(final Event event, final Gadget.TriggerAction trigger, final Gadget gadget) {
         if (trigger != Gadget.TriggerAction.INTERACT && trigger != Gadget.TriggerAction.TELEPORT_ENDERPEARL && trigger != Gadget.TriggerAction.PROJECTILE_HIT && trigger != Gadget.TriggerAction.ENTITY_DAMAGE_BY_ENTITY && trigger != Gadget.TriggerAction.HANGING_BREAK_BY_ENTITY) {
             return false;

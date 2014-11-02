@@ -13,8 +13,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 
-public class Options
-{
+public class Options {
     private static Item item;
     private static Item gadgets;
     private static String translation;
@@ -35,10 +34,13 @@ public class Options
         catch (IOException e) {
             e.printStackTrace();
         }
+        
         Options.gadgets = new Item(config.getInt("gadgets.slot"), true, null);
         Options.translation = config.getString("translation");
+        
         Translation.load(new File(HubGadgetsPlugin.i.getDataFolder(), "translations_" + getTranslation() + ".yml"));
-        final ItemBuilder builder = new ItemBuilder(Material.getMaterial(config.getInt("item.id")), 1, (short)config.getInt("item.data")).setTitle(ChatColor.translateAlternateColorCodes('&', StringUtils.join(Translation.getTranslation("item.title"), ", ")));
+        @SuppressWarnings("deprecation")
+		final ItemBuilder builder = new ItemBuilder(Material.getMaterial(config.getInt("item.id")), 1, (short)config.getInt("item.data")).setTitle(ChatColor.translateAlternateColorCodes('&', StringUtils.join(Translation.getTranslation("item.title"), ", ")));
         String[] translation;
         for (int length = (translation = Translation.getTranslation("item.description")).length, i = 0; i < length; ++i) {
             final String lore = translation[i];
@@ -59,8 +61,7 @@ public class Options
         return Options.translation;
     }
     
-    public static class Item
-    {
+    public static class Item {
         private int slot;
         private boolean enable;
         private ItemStack itemStack;
