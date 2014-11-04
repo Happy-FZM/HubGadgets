@@ -26,8 +26,8 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-public class SuicidalSheepAction implements Gadget.GadgetAction
-{
+public class SuicidalSheepAction implements Gadget.GadgetAction {
+	
     public static Map<Player, Sheep> playerSheep;
     public static Map<Player, Bat> playerBat;
     public static Map<Player, List<Entity>> playerEntities;

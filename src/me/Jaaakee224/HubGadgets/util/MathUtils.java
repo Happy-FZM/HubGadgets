@@ -3,6 +3,7 @@ package me.Jaaakee224.HubGadgets.util;
 import java.util.Random;
 
 public final class MathUtils {
+	
     public static final float nanoToSec = 1.0E-9f;
     public static final float FLOAT_ROUNDING_ERROR = 1.0E-6f;
     public static final float PI = 3.1415927f;

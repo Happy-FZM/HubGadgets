@@ -14,6 +14,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Translation {
+	
     private static Map<String, String> messages;
     
     static {

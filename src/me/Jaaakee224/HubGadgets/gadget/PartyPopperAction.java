@@ -21,8 +21,8 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-public class PartyPopperAction implements Gadget.GadgetAction
-{
+public class PartyPopperAction implements Gadget.GadgetAction {
+	
     private final Map<Player, List<Item>> entities;
     
     public PartyPopperAction() {

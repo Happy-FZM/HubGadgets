@@ -80,8 +80,8 @@ public class HubGadgetsPlugin extends JavaPlugin {
 		final Player player = (Player)sender;
 		if (args.length == 0) {
 			this.menu.open(player, 1);
-		}
-		else if (args[0].equalsIgnoreCase("clear")) {
+			
+	} else if (args[0].equalsIgnoreCase("clear")) {
 			final Gadget gadget = Gadget.getPlayerGadget(player);
 			if (gadget != null) {
 				gadget.finish(player);
@@ -93,16 +93,14 @@ public class HubGadgetsPlugin extends JavaPlugin {
 				final Gadget gadget2 = getGadget(args[1]);
 				if (gadget2 != null && gadget2.isEnable() && gadget2.check(player, true) && gadget2.getAction().onEvent(new PlayerInteractEvent(player, Action.LEFT_CLICK_AIR, gadget2.getItem(), gadget2.getTriggers().contains(Gadget.TriggerAction.INTERACT_BLOCK) ? player.getTargetBlock((HashSet)null, 4) : null, gadget2.getTriggers().contains(Gadget.TriggerAction.INTERACT_BLOCK) ? BlockFace.SELF : null), gadget2.getTriggers().contains(Gadget.TriggerAction.INTERACT_BLOCK) ? Gadget.TriggerAction.INTERACT_BLOCK : Gadget.TriggerAction.INTERACT, gadget2)) {
 					gadget2.afterExec(player);
-				}
-				else if (gadget2 == null || !gadget2.isEnable()) {
+				} else if (gadget2 == null || !gadget2.isEnable()) {
 					String[] translation;
 					for (int length = (translation = Translation.getTranslation("unknown_gadget")).length, i = 0; i < length; ++i) {
 						final String msg = translation[i];
 						player.sendMessage(msg.replace("[Gadgets]", this.getGadgetsList()));
 					}
 				}
-			}
-			else {
+			} else {
 				final Gadget gadget2 = getGadget(name);
 				if (gadget2 != null && gadget2.isEnable()) {
 					if (!player.hasPermission("gadgets.gadget." + ChatColor.stripColor(gadget2.name().replace("_", "").toLowerCase()))) {
@@ -110,8 +108,7 @@ public class HubGadgetsPlugin extends JavaPlugin {
 						return true;
 					}
 					player.getInventory().setItem(Options.getGadgets().getSlot(), gadget2.getItem());
-				}
-				else {
+				} else {
 					String[] translation2;
 					for (int length2 = (translation2 = Translation.getTranslation("unknown_gadget")).length, j = 0; j < length2; ++j) {
 						final String msg = translation2[j];

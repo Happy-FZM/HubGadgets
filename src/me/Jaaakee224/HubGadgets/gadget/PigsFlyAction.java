@@ -6,7 +6,10 @@ import java.util.Map;
 
 import me.Jaaakee224.HubGadgets.config.Translation;
 import me.Jaaakee224.HubGadgets.handler.Gadget;
+
+import org.bukkit.Color;
 import org.bukkit.Effect;
+import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Bat;
@@ -76,6 +79,7 @@ public class PigsFlyAction implements Gadget.GadgetAction {
 				@SuppressWarnings({ "unchecked", "rawtypes" })
 				final Pig pig2 = (Pig)location.getWorld().spawn(location.add(0.0, 1.0, 0.0), (Class)Pig.class);
 				pig2.setNoDamageTicks(Integer.MAX_VALUE);
+				pig2.setSaddle(true);
 				pig2.setPassenger(player2);
 				this.ride.put(pig2, bat);
 				this.entities.put(player2, pig2);
@@ -92,6 +96,13 @@ public class PigsFlyAction implements Gadget.GadgetAction {
 			entity.getLocation().getWorld().playEffect(entity.getLocation().add(0, 1, 0), Effect.STEP_SOUND, 152);
 			 entity.getLocation().getWorld().playEffect(entity.getLocation().add(0, 1, 0), Effect.STEP_SOUND, 152);
 			 entity.getLocation().getWorld().playEffect(entity.getLocation().add(0, 1, 0), Effect.STEP_SOUND, 152);
+			 FireworkEffect.Builder builder = FireworkEffect.builder();
+
+				// Create a firework effect with the builder
+				FireworkEffect effect = builder.flicker(false).trail(true).with(FireworkEffect.Type.BURST).withColor(Color.RED).withFade(Color.RED).build();
+
+				// Spawn our firework
+				me.Jaaakee224.HubGadgets.util.FireworkHandler.spawn(entity.getLocation(), effect);
 			 entity.getLocation().getWorld().playEffect(entity.getLocation().add(0, 1, 0), Effect.STEP_SOUND, 152);
 			 entity.getLocation().getWorld().playEffect(entity.getLocation().add(0, 1, 0), Effect.STEP_SOUND, 152);
 			entity.remove();

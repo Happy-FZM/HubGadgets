@@ -5,8 +5,8 @@ import java.util.Random;
 import org.bukkit.Material;
 import org.bukkit.util.Vector;
 
-public final class RandomUtils
-{
+public final class RandomUtils {
+	
     public static final Random random;
     
     static {

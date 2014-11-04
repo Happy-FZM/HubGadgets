@@ -22,6 +22,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class Menu implements Listener {
+	
     private final String title;
     private final List<MenuPage> pages;
     private final ItemStack[] buttons;
@@ -37,11 +38,11 @@ public class Menu implements Listener {
         for (int i = 0, maxPages = MathUtils.ceil(buttons.length / 21) + 1; i < maxPages; ++i) {
             final int id = i + 1;
             final Map<Integer, ItemStack> indexes = this.getButtonsInRange(current, current + 21);
+            indexes.put(40, new ItemBuilder(Material.GLASS).setTitle(StringUtils.join(Translation.getTranslation("inventory.clear"), ", ")).build());
             if (id > 1 || id < maxPages) {
                 if (id > 1) {
                     indexes.put(39, new ItemBuilder(Material.ARROW).setTitle(StringUtils.join(Translation.getTranslation("inventory.prev"), ", ").replace("[page]", new StringBuilder(String.valueOf(id - 1)).toString())).build());
                 }
-                indexes.put(40, new ItemBuilder(Material.GLASS).setTitle(StringUtils.join(Translation.getTranslation("inventory.clear"), ", ")).build());
                 if (id < maxPages) {
                     indexes.put(41, new ItemBuilder(Material.ARROW).setTitle(StringUtils.join(Translation.getTranslation("inventory.next"), ", ").replace("[page]", new StringBuilder(String.valueOf(id + 1)).toString())).build());
                 }

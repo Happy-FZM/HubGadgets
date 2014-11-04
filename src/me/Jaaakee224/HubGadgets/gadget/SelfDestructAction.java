@@ -24,8 +24,8 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
-public class SelfDestructAction implements Gadget.GadgetAction
-{
+public class SelfDestructAction implements Gadget.GadgetAction {
+	
     private final Map<Player, Integer> particles;
     private final Map<Player, List<Item>> entities;
     

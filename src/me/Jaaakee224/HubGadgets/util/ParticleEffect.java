@@ -14,6 +14,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public enum ParticleEffect {
+	
     HUGE_EXPLOSION("HUGE_EXPLOSION", 0, "hugeexplosion"), 
     LARGE_EXPLODE("LARGE_EXPLODE", 1, "largeexplode"), 
     FIREWORKS_SPARK("FIREWORKS_SPARK", 2, "fireworksSpark"), 

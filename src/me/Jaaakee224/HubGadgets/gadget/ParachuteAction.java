@@ -20,6 +20,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 public class ParachuteAction implements Gadget.GadgetAction {
+	
 	private final Map<Player, List<Chicken>> entities;
 	private final Map<Player, Chicken> parachutes;
 

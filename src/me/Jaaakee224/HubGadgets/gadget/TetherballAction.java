@@ -23,6 +23,7 @@ import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class TetherballAction implements Gadget.GadgetAction {
+	
     private final Map<Player, List<Entity>> entities;
     private final Map<Player, List<Block>> blocks;
     

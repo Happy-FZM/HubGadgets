@@ -30,7 +30,6 @@ public class DiscoBallAction implements Gadget.GadgetAction {
 		this.blocks = new HashMap<Player, List<Block>>();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onEvent(final Event event, final Gadget.TriggerAction trigger, final Gadget gadget) {
 		if (trigger != Gadget.TriggerAction.BLOCK_BREAK && trigger != Gadget.TriggerAction.INTERACT) {
@@ -56,7 +55,8 @@ public class DiscoBallAction implements Gadget.GadgetAction {
 				return false;
 			}
 			final List<Block> blocks = new ArrayList<Block>();
-			player.getWorld().playEffect(player.getLocation().add(0.0, 5.0, 0.0), Effect.RECORD_PLAY, Material.RECORD_4.getId());
+
+			player.getWorld().playEffect(player.getLocation().add(0.0, 5.0, 0.0), Effect.RECORD_PLAY, Material.RECORD_4);
 			this.addBlock(location.add(0.0, 5.0, 0.0).getBlock(), blocks).setType(Material.STAINED_GLASS);
 			this.blocks.put(player, blocks);
 			this.effects.put(player, location.getBlock().getLocation().add(0.5, 0.5, 0.5));

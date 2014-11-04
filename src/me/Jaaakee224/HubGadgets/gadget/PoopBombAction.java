@@ -21,8 +21,7 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-public class PoopBombAction implements Gadget.GadgetAction
-{
+public class PoopBombAction implements Gadget.GadgetAction {
     private final Map<Player, Item> bombs;
     private final Map<Player, List<Item>> entities;
     

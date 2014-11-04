@@ -8,8 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class PlayerInteract implements Listener
-{
+public class PlayerInteract implements Listener {
+	
     @EventHandler
     public void onPlayerInteract(final PlayerInteractEvent event) {
         final ItemStack item = event.getItem();

@@ -14,6 +14,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 
 public class Options {
+	
     private static Item item;
     private static Item gadgets;
     private static String translation;

@@ -3,15 +3,12 @@ package me.Jaaakee224.HubGadgets.gadget;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.Jaaakee224.HubGadgets.HubGadgetsPlugin;
 import me.Jaaakee224.HubGadgets.handler.Gadget;
-import me.Jaaakee224.HubGadgets.util.MathUtils;
+import me.Jaaakee224.HubGadgets.util.RandomFireworkHandler;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.block.Block;
 import org.bukkit.entity.EnderPearl;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -20,12 +17,11 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.player.PlayerEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
-public class PaintGunAction implements Gadget.GadgetAction {
+public class FireworkGunAction implements Gadget.GadgetAction {
 	private final Map<EnderPearl, Player> pearls;
 
-	public PaintGunAction() {
+	public FireworkGunAction() {
 		super();
 		this.pearls = new HashMap<EnderPearl, Player>();
 	}
@@ -44,8 +40,7 @@ public class PaintGunAction implements Gadget.GadgetAction {
 			final Location location = player.getLocation();
 			player.playSound(location, Sound.CHICKEN_EGG_POP, 8.0f, 10.0f);
 			this.pearls.put((EnderPearl)player.launchProjectile((Class)EnderPearl.class), player);
-		}
-		else {
+		} else {
 			if (trigger == Gadget.TriggerAction.ENTITY_DAMAGE_BY_ENTITY || trigger == Gadget.TriggerAction.HANGING_BREAK_BY_ENTITY) {
 				Entity damager = null;
 				if (trigger == Gadget.TriggerAction.ENTITY_DAMAGE_BY_ENTITY) {
@@ -62,23 +57,10 @@ public class PaintGunAction implements Gadget.GadgetAction {
 					final EnderPearl pearl = (EnderPearl)hitEvent.getEntity();
 					if (pearl.getShooter() != null && pearl.getShooter() instanceof Player && this.pearls.containsKey(pearl)) {
 						final Location location2 = pearl.getLocation().add(pearl.getVelocity());
-						final Block block = location2.getBlock();
-						if (block.getType() != Material.AIR && !block.getType().name().contains("SIGN")) {
-							for (final Player p : Bukkit.getOnlinePlayers()) {
-							final BlockRestore restore = new BlockRestore(p, location2, block.getType(), block.getData());
-							new BukkitRunnable() {
-								@Override
-								public void run() {
-									restore.restore();
-								}
-							}.runTaskLater(HubGadgetsPlugin.i, 80L);
-							p.sendBlockChange(location2, Material.STAINED_CLAY, (byte) MathUtils.random.nextInt(15));
-							}
-						}
-						this.pearls.remove(pearl);
+						RandomFireworkHandler.spawnRandomFirework(location2);
 					}
+					this.pearls.remove(pearl);
 				}
-				return false;
 			}
 		}
 		return true;

@@ -8,11 +8,9 @@ import java.util.Map;
 import me.Jaaakee224.HubGadgets.HubGadgetsPlugin;
 import me.Jaaakee224.HubGadgets.config.Options;
 import me.Jaaakee224.HubGadgets.config.Translation;
-import me.Jaaakee224.HubGadgets.gadget.BatBlasterAction;
-import me.Jaaakee224.HubGadgets.gadget.CowboyAction;
-import me.Jaaakee224.HubGadgets.gadget.CryotubeAction;
 import me.Jaaakee224.HubGadgets.gadget.DiscoBallAction;
 import me.Jaaakee224.HubGadgets.gadget.DiscoPantsAction;
+import me.Jaaakee224.HubGadgets.gadget.FireworkGunAction;
 import me.Jaaakee224.HubGadgets.gadget.FlyingCarpetAction;
 import me.Jaaakee224.HubGadgets.gadget.GhostsAction;
 import me.Jaaakee224.HubGadgets.gadget.PaintGunAction;
@@ -21,16 +19,12 @@ import me.Jaaakee224.HubGadgets.gadget.ParachuteAction;
 import me.Jaaakee224.HubGadgets.gadget.PartyPopperAction;
 import me.Jaaakee224.HubGadgets.gadget.PigsFlyAction;
 import me.Jaaakee224.HubGadgets.gadget.PoopBombAction;
-import me.Jaaakee224.HubGadgets.gadget.PyromaniacAction;
-import me.Jaaakee224.HubGadgets.gadget.RailgunAction;
 import me.Jaaakee224.HubGadgets.gadget.RainbowAction;
 import me.Jaaakee224.HubGadgets.gadget.RocketAction;
 import me.Jaaakee224.HubGadgets.gadget.SelfDestructAction;
-import me.Jaaakee224.HubGadgets.gadget.SlimevasionAction;
 import me.Jaaakee224.HubGadgets.gadget.SuicidalSheepAction;
 import me.Jaaakee224.HubGadgets.gadget.SweetsBombAction;
 import me.Jaaakee224.HubGadgets.gadget.TNTFountainAction;
-import me.Jaaakee224.HubGadgets.gadget.TeleportStickAction;
 import me.Jaaakee224.HubGadgets.gadget.TetherballAction;
 import me.Jaaakee224.HubGadgets.gadget.TrampolineAction;
 import me.Jaaakee224.HubGadgets.util.LocationUtils;
@@ -72,28 +66,22 @@ public enum Gadget implements Listener {
 	
 	ROCKET(ChatColor.GREEN + "Rocket", ChatColor.GRAY + "Fly off to the moon with\n" + ChatColor.GRAY + "this huge rocket.", new ItemStack(Material.FIREWORK), 90, 10, new RocketAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.ENTITY_CHANGE_BLOCK)), 
 	PARACHUTE(ChatColor.GREEN + "Parachute", ChatColor.GRAY + "Jump into the sky before\n" + ChatColor.GRAY + "open your parachute for a\n" + ChatColor.GRAY + "soft landing.", new ItemStack(Material.LEASH), 60, -1, new ParachuteAction(), Arrays.asList(TriggerAction.INTERACT)), 
-	TNTFOUNTAIN(ChatColor.GREEN + "TNT Fountain", ChatColor.GRAY + "Invoke a TNT Fountain.", new ItemStack(Material.TNT), 90, 15, new TNTFountainAction(), Arrays.asList(TriggerAction.INTERACT)), 
-	COWBOY(ChatColor.GREEN + "Cowboy", ChatColor.GRAY + "Ride the nearest player\n" + ChatColor.GRAY + "or animal.", new ItemStack(Material.CACTUS), 0, -1, new CowboyAction(), Arrays.asList(TriggerAction.INTERACT_ENTITY)), 
-	TETHERBALL(ChatColor.GREEN + "Tetherball", ChatColor.GRAY + "Create a stake with\n" + ChatColor.GRAY + "a ball attached on it,\n" + ChatColor.GRAY + "perfect for quick game.", new ItemStack(Material.FENCE), 90, 45, new TetherballAction(), Arrays.asList(TriggerAction.INTERACT_BLOCK, TriggerAction.BLOCK_BREAK, TriggerAction.HANGING_BREAK)), 
-	PYROMANIAC(ChatColor.GREEN + "Pyromaniac", ChatColor.GRAY + "Ignites you for 10 seconds,\n" + ChatColor.GRAY + "before refresh you.", new ItemStack(Material.FLINT_AND_STEEL), 30, 10, new PyromaniacAction(), Arrays.asList(TriggerAction.INTERACT)), 
-	TELEPORTSTICK(ChatColor.GREEN + "Teleport Stick", ChatColor.GRAY + "Use the magic stick\n" + ChatColor.GRAY + "to teleport yourself\n" + ChatColor.GRAY + "everywhere in the lobby.", new ItemStack(Material.STICK), 3, 0, new TeleportStickAction(), Arrays.asList(TriggerAction.INTERACT)), 
+	TNTFOUNTAIN(ChatColor.GREEN + "TNT Fountain", ChatColor.GRAY + "Invoke a TNT Fountain.", new ItemStack(Material.TNT), 90, 15, new TNTFountainAction(), Arrays.asList(TriggerAction.INTERACT)),
+	TETHERBALL(ChatColor.GREEN + "Tetherball", ChatColor.GRAY + "Create a stake with\n" + ChatColor.GRAY + "a ball attached on it,\n" + ChatColor.GRAY + "perfect for quick game.", new ItemStack(Material.FENCE), 90, 45, new TetherballAction(), Arrays.asList(TriggerAction.INTERACT_BLOCK, TriggerAction.BLOCK_BREAK, TriggerAction.HANGING_BREAK)),
 	RAINBOW(ChatColor.GREEN + "Rainbow", ChatColor.GRAY + "You can now show a\n" + ChatColor.GRAY + "rainbow with the most\n" + ChatColor.GRAY + "beautiful color!", new ItemStack(Material.COOKED_FISH, 1, (short)2), 120, 10, new RainbowAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	WHENPIGSFLY(ChatColor.GREEN + "When Pigs Fly", ChatColor.GRAY + "Ride a pig to achieve your\n" + ChatColor.GRAY + "most epic battles!", new ItemStack(Material.SADDLE), 30, 30, new PigsFlyAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.ENTITY_DAMAGE, TriggerAction.VEHICLE_EXIT)), 
-	RAILGUN(ChatColor.GREEN + "Railgun", ChatColor.GRAY + "Directly coming from QuakeCraft,\n" + ChatColor.GRAY + "this RailGun is ready for\n" + ChatColor.GRAY + "unlimited fire!", new ItemStack(Material.WOOD_HOE), 10, 0, new RailgunAction(), Arrays.asList(TriggerAction.INTERACT)),
 	DISCOBALL(ChatColor.GREEN + "Disco Ball", ChatColor.GRAY + "Dance to the\n" + ChatColor.GRAY + "beat with a color-changing\n" + ChatColor.GRAY + "disco ball and music!", new ItemStack(Material.STAINED_GLASS, 1, (short) 11), 60, 20, new DiscoBallAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.BLOCK_BREAK)),
-	CRYOTUBE(ChatColor.GREEN + "Cryotube", ChatColor.GRAY + "Protect yourself in a\n" + ChatColor.GRAY + "iceberg, useful to survive\n" + ChatColor.GRAY + "from apocalyspe.", new ItemStack(Material.SNOW_BALL), 45, 10, new CryotubeAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.BLOCK_BREAK)),
-	DISCOPANTS(ChatColor.GREEN + "Disco Pants", ChatColor.GRAY + "What is better than random\n" + ChatColor.GRAY + "colored pants?", new ItemStack(Material.LEATHER_LEGGINGS), 60, 30, new DiscoPantsAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.INVENTORY_CLICK, TriggerAction.INVENTORY_DROP)), 
+	DISCOPANTS(ChatColor.GREEN + "Disco Pants", ChatColor.GRAY + "What is better than random\n" + ChatColor.GRAY + "colored pants?", new ItemStack(Material.LEATHER_LEGGINGS), 60, 30, new DiscoPantsAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.INVENTORY_CLICK, TriggerAction.INVENTORY_DROP)),
 	PAINTTRAIL(ChatColor.GREEN + "Paint Trail", ChatColor.GRAY + "Leaves a trail of randomly\n" + ChatColor.GRAY + "colored clay above your\n" + ChatColor.GRAY + "head that disappears\n" + ChatColor.GRAY + "a few seconds later.", new ItemStack(Material.INK_SACK, 1, (short)11), 60, 10, new PaintTrailAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	POOPBOMB(ChatColor.GREEN + "Poop Bomb", ChatColor.GRAY + "If the name doesn't say\n" + ChatColor.GRAY + "enough, this is pretty much\n" + ChatColor.GRAY + "just a bomb that explodes\n" + ChatColor.GRAY + "releasing poop everywhere.", new ItemStack(Material.INK_SACK, 1, (short)3), 60, 10, new PoopBombAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	PAINTGUN(ChatColor.GREEN + "Paint Gun", ChatColor.GRAY + "Paint the lobby to your\n" + ChatColor.GRAY + "taste with that gun of paint.", new ItemStack(Material.GOLD_BARDING), 10, -1, new PaintGunAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.TELEPORT_ENDERPEARL, TriggerAction.PROJECTILE_HIT, TriggerAction.ENTITY_DAMAGE_BY_ENTITY, TriggerAction.HANGING_BREAK_BY_ENTITY)), 
-	BATBLASTER(ChatColor.GREEN + "Bat Blaster", ChatColor.GRAY + "Launch a wave of bat\n" + ChatColor.GRAY + "on people you don't like!", new ItemStack(Material.IRON_BARDING), 30, 2, new BatBlasterAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	SELFDESTRUCT(ChatColor.GREEN + "Self Destruct", ChatColor.GRAY + "Have you ever wanted to\n" + ChatColor.GRAY + "make you explode and stay\n" + ChatColor.GRAY + "alive to see what happens?", new ItemStack(Material.FIREBALL), 60, 10, new SelfDestructAction(), Arrays.asList(TriggerAction.INTERACT)), 
-	SLIMEVASION(ChatColor.GREEN + "Slimevasion", ChatColor.GRAY + "Summon slimes that will\n" + ChatColor.GRAY + "shatter when falling.", new ItemStack(Material.SLIME_BALL), 60, 15, new SlimevasionAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.ENTITY_DAMAGE)), 
 	TRAMPOLINE(ChatColor.GREEN + "Trampoline", ChatColor.GRAY + "Constructs a trampoline\n" + ChatColor.GRAY + "that sends you into the air.", new ItemStack(Material.HOPPER), 90, 30, new TrampolineAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.BLOCK_BREAK)), 
 	SUICIDALSHEEP(ChatColor.GREEN + "Suicidal Sheep", ChatColor.GRAY + "A flying sheep that explodes\n" + ChatColor.GRAY + "after a few seconds. What\n" + ChatColor.GRAY + "could be more normal?", new ItemStack(Material.WOOL, 1, (byte)14), 60, 13, new SuicidalSheepAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	GHOSTS(ChatColor.GREEN + "Ghosts", ChatColor.GRAY + "Scare your friends with\n" + ChatColor.GRAY + "these ghosts!", new ItemStack(Material.SKULL_ITEM), 60, 20, new GhostsAction(), Arrays.asList(TriggerAction.INTERACT)), 
 	FLYINGCARPET(ChatColor.GREEN + "Flying Carpet", ChatColor.GRAY + "Become a wizard with\n" + ChatColor.GRAY + "this flying carpet!", new ItemStack(Material.CARPET, 1, (byte)9), 90, 45, new FlyingCarpetAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.ENTITY_CHANGE_BLOCK)),
 	SWEETSBOMB(ChatColor.GREEN + "Sweets Bomb", ChatColor.GRAY + "Create an explosion that\n" + ChatColor.GRAY + "releases dozens of cake\n" + ChatColor.GRAY + "and cookies.", new ItemStack(Material.CAKE), 60, 10, new SweetsBombAction(), Arrays.asList(TriggerAction.INTERACT)),
+	FIREWORKGUN(ChatColor.GREEN + "Firework Gun", ChatColor.GRAY + "Shoot colorful fireworks\n" + ChatColor.GRAY + "all over the place!", new ItemStack(Material.IRON_BARDING), 10, -1, new FireworkGunAction(), Arrays.asList(TriggerAction.INTERACT, TriggerAction.TELEPORT_ENDERPEARL, TriggerAction.PROJECTILE_HIT, TriggerAction.ENTITY_DAMAGE_BY_ENTITY, TriggerAction.HANGING_BREAK_BY_ENTITY)), 
 	PARTYPOPPER(ChatColor.GREEN + "Party Popper", ChatColor.GRAY + "The party has just\n" + ChatColor.GRAY + "begun!", new ItemStack(Material.ENDER_CHEST), 60, 20, new PartyPopperAction(), Arrays.asList(TriggerAction.INTERACT));
 
 
@@ -127,6 +115,7 @@ public enum Gadget implements Listener {
 					if (block.getType() != Material.AIR) {
 						return false;
 					}
+					
 					Entity[] nearbyEntities;
 					for (int length = (nearbyEntities = LocationUtils.getNearbyEntities(location, 2)).length, i = 0; i < length; ++i) {
 						final Entity entity = nearbyEntities[i];

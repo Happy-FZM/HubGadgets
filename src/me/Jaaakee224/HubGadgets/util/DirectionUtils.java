@@ -3,6 +3,7 @@ package me.Jaaakee224.HubGadgets.util;
 import org.bukkit.entity.Player;
 
 public class DirectionUtils {
+	
     public static Direction getCardinalDirection(final Player player) {
         double rotation = (player.getLocation().getYaw() - 90.0f) % 360.0f;
         if (rotation < 0.0) {

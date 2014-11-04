@@ -21,6 +21,7 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.util.Vector;
 
 public class RocketAction implements Gadget.GadgetAction {
+	
     private final Map<Player, List<Entity>> entities;
     private final Map<Player, FallingBlock> rockets;
     

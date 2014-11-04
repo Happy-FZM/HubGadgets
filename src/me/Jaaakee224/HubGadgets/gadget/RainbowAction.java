@@ -21,8 +21,8 @@ import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.util.Vector;
 
-public class RainbowAction implements Gadget.GadgetAction
-{
+public class RainbowAction implements Gadget.GadgetAction {
+	
     private final Map<Player, List<Entity>> entities;
     
     public RainbowAction() {

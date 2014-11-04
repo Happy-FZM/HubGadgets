@@ -18,6 +18,7 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class DiscoPantsAction implements Gadget.GadgetAction {
+	
     private static final String TITLE;
     private final Map<Player, ItemStack> leggings;
     
@@ -38,15 +39,15 @@ public class DiscoPantsAction implements Gadget.GadgetAction {
         if (trigger == Gadget.TriggerAction.INTERACT) {
             final Player player = ((PlayerEvent)event).getPlayer();
             this.leggings.put(player, player.getInventory().getLeggings());
-        }
-        else if (trigger == Gadget.TriggerAction.INVENTORY_DROP) {
+        
+    } else if (trigger == Gadget.TriggerAction.INVENTORY_DROP) {
             final PlayerDropItemEvent dropEvent = (PlayerDropItemEvent)event;
             final ItemStack item = dropEvent.getItemDrop().getItemStack();
             if (!item.hasItemMeta() || !item.getItemMeta().getDisplayName().equals(DiscoPantsAction.TITLE)) {
                 return false;
             }
-        }
-        else if (trigger == Gadget.TriggerAction.INVENTORY_CLICK) {
+            
+    } else if (trigger == Gadget.TriggerAction.INVENTORY_CLICK) {
             final InventoryClickEvent clickEvent = (InventoryClickEvent)event;
             final ItemStack item = clickEvent.getCurrentItem();
             if (item == null || !item.hasItemMeta() || !item.getItemMeta().getDisplayName().equals(DiscoPantsAction.TITLE)) {

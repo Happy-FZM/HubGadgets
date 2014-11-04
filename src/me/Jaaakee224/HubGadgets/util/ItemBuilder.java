@@ -13,6 +13,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class ItemBuilder {
+	
     private String title;
     private final int amount;
     private final short damage;
